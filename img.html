@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configure Welcome Message</title>
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="cont">
+      <div class="cont1">
+        <h2>Configure Welcome Message</h2><br>
+
+    <div class="form-group">
+      <label id="radi"> Pre-approved template message
+        <input id="in" type="radio" name="template" value="pre-approved" >
+      </label>
+      <label id="radi">  Regular message
+        <input id="in" type="radio" name="template" value="regular" checked>
+      </label>
+    </div>
+
+        <div class="section">
+          <p>Type</p>
+          <label>
+            <input type="radio" name="content-type" value="text" /> Text
+          </label>
+          <label>
+            <input type="radio" name="content-type" value="image" checked /> Image
+          </label>
+          <label>
+            <input type="radio" name="content-type" value="video" /> Video
+          </label>
+          <label>
+            <input type="radio" name="content-type" value="document" /> Document
+          </label>
+        </div>
+      </div>
+      <div class="cont2">
+        <div class="preview">
+          <h3>Preview</h3>
+          <img src="" alt="Preview" style="max-width: 100%; height: auto;" />
+         <p>Hi {{name}}, please find details in attached image...</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="upload-section"><br>
+      <label style="font-weight: bold;">Upload Media File</label>
+      <p>Supported file type: .png or .jpeg</p>
+      <p>Maximum file size: 5 MB</p>
+      <input type="file" accept=".png, .jpeg, .jpg" class="upload-file" /><br><br>
+      <input type="text" placeholder="Media URL" class="media-url" />
+    </div>
+
+    <!-- Message body input -->
+    <div class="message-body">
+      <label>Message Body *</label>
+      <textarea id="area"  placeholder="Enter your message here"></textarea>
+    </div>
+
+    <!-- Footer buttons -->
+    <div class="footer">
+      <button class="cancel-btn" onclick="window.location.href='home.html';">Cancel</button>
+      <button class="save-btn">Save</button>
+    </div>
+    <!-- Upload section -->
+            
+    <!-- Preview section -->
+  </div>
+
+
+  <script>
+    // Redirect on type selection (image, doc, etc.)
+    document.querySelectorAll('input[name="content-type"]').forEach((radio) => {
+  radio.addEventListener('change', function () {
+    if (this.value === 'image') {
+      window.location.href = 'img.html';
+    } else if (this.value === 'document') {
+      window.location.href = 'doc.html';
+    } else if (this.value === 'video') {
+      window.location.href = 'video.html';
+    } else if (this.value === 'text') {
+      window.location.href = 'text.html';
+    }
+  });
+});
+  
+  
+    document.querySelectorAll('input[name="template"]').forEach((radio) => {
+      radio.addEventListener('change', function () {
+        if (this.value === 'pre-approved') {
+          window.location.href = 'pre.html';
+        }
+      });
+    });  
+
+    // Show preview of uploaded image
+    const fileInput = document.querySelector('.upload-file');
+    const previewImg = document.querySelector('.preview img');
+
+    fileInput.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          previewImg.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        alert('Please select a valid image file (.png, .jpg, .jpeg).');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Configure Welcome Message</title>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <div class="container">
+    <div class="modal">
+      <h2>CONFIGURE WELCOME MESSAGE</h2><br>  
+      <form>
+        <div class="cont">
+            <div class="cont1">
+                <div class="form-group">
+                    <label id="radi"> Pre-approved template message
+                      <input id="in" type="radio" name="template" value="pre-approved" checked>
+                    </label>
+                    <label id="radi">  Regular message
+                      <input id="in" type="radio" name="template" value="regular">
+                    </label>
+                  </div>
+          
+
+                  <div class="form-group">
+                    <label for="templateSelect">Select Template:</label>
+                    <select id="templateSelect">
+                      <option value="">-- Select --</option>
+                    </select>
+                  </div>
+          
+                  <!-- Media Upload -->
+                  <div class="form-group">
+                    <label>Upload Media File</label>
+                    <p>Supported file type: .png or .jpeg</p>
+                    <p>Maximum file size: 5 MB</p>
+                    <button type="button" class="upload-btn">Upload From Media Library</button>
+                  </div>
+          
+                  <!-- Media URL -->
+                  <div class="form-group">
+                    <label for="media-url">Media URL:</label>
+                    <input type="url" id="media-url" placeholder="Enter media URL" />
+                    <button type="button" onclick="insertVariable()">Add Variable</button>
+                  </div>
+            </div>
+            <div class="cont2">
+              <div class="preview">
+                <h3>Preview</h3>
+                <img src="" alt="Preview" style="max-width: 100%; height: auto;" />
+               <p>Hi {{name}}, please find details in attached image...</p>
+              </div>
+            </div>
+          </div>
+
+        <div class="form-group">
+          <label>Values</label>
+          <div class="value-pair">
+            <input type="text" placeholder="Variable Name" />
+            <input type="text" placeholder="Value" />
+          </div>
+          <div class="value-pair">
+            <input type="text" placeholder="Variable Name" />
+            <input type="text" placeholder="Value" />
+          </div>
+        </div>
+
+
+        <!-- Buttons -->
+      </form>
+    </div>
+    <div class="footer">
+        <button class="cancel-btn" onclick="window.location.href='home.html';">Cancel</button>
+        <button class="save-btn">Save</button>
+      </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Redirect to text.html if "Regular message" is selected
+    document.querySelectorAll('input[name="template"]').forEach((radio) => {
+      radio.addEventListener('change', function () {
+        if (this.value === 'regular') {
+          window.location.href = 'text.html';
+        }
+      });
+    });
+
+    // Dummy function for "Add Variable" button
+    function insertVariable() {
+      alert("Add Variable functionality goes here.");
+    }
+  </script>
+</body>
+</html>

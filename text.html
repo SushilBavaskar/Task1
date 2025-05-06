@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="home.css" />
+  <title>Configure Welcome Message</title>
+</head>
+<body>
+  <div class="container">
+    <div class="cont">
+      <div class="cont1">
+        <h1>Configure Welcome Message</h1>
+        <div class="form-group">
+          <label> Pre-approved template message
+            <input  type="radio" name="template" value="pre-approved">
+          </label>
+          <label>  Regular message
+            <input  type="radio" name="template" value="regular" checked>
+          </label>
+        </div>
+
+      <div class="form-group">
+        <label>Type:</label>
+        <div class="message-type">
+          <label><input type="radio" name="type" value="text" checked /> Text</label>
+          <label><input type="radio" name="type" value="image" /> Image</label>
+          <label><input type="radio" name="type" value="video" /> Video</label>
+          <label><input type="radio" name="type" value="document" /> Document</label>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <textarea id="area" rows="5" placeholder="Enter your message here"></textarea>
+        <button type="button" onclick="formatText('bold')"><b>B</b></button>
+        <button type="button" onclick="formatText('italic')"><i>I</i></button>
+        <button type="button" onclick="formatText('underline')"><u>U</u></button>
+        <button type="button" onclick="insertSymbol('©')">©</button>
+        <p class="char-count" id="charCount">0/4095</p>
+      </div>
+
+      </div>
+      <div class="cont2">
+        <div class="preview">
+          <h3>Preview</h3>
+          <img src="" alt="Preview" style="max-width: 100%; height: auto;" />
+         <p>Hi {{name}}, please find details in attached image...</p>
+        </div>
+      </div>
+    </div>
+    
+      <div class="footer">
+        <button class="cancel-btn" onclick="window.location.href='home.html';">Cancel</button>
+        <button class="save-btn">Save</button>
+      </div>
+    </form>
+  </div>
+
+
+  <script>
+    // Redirect on type selection (image, doc, etc.)
+    document.querySelectorAll('input[name="type"]').forEach((radio) => {
+      radio.addEventListener('change', function () {
+        if (this.value === 'image') {
+          window.location.href = 'img.html';
+        } else if (this.value === 'document') {
+          window.location.href = 'doc.html';
+        } else if (this.value === 'video') {
+          window.location.href = 'video.html';
+        } else if (this.value === 'text') {
+          window.location.href = 'text.html';
+        }
+      });
+    });
+  
+
+    document.querySelectorAll('input[name="template"]').forEach((radio) => {
+      radio.addEventListener('change', function () {
+        if (this.value === 'pre-approved') {
+          window.location.href = 'pre.html';
+        }
+      });
+    });
+  </script>  
+</body>
+</html>

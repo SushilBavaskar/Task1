@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="home.css" />
+  <title>Configure Welcome Message</title>
+</head>
+<body>
+  <div class="container">
+    <div class="cont">
+      <div class="cont1">
+        <div class="header">
+          <h2>Configure Welcome Message</h2>
+        </div><br>
+    
+        <div class="form-group">
+          <label id="radi"> Pre-approved template message
+            <input id="in" type="radio" name="template" value="pre-approved" >
+          </label>
+          <label id="radi">  Regular message
+            <input id="in" type="radio" name="template" value="regular" checked>
+          </label>
+        </div>
+    
+        <div class="section">
+          <p>Type</p>
+          <label>
+            <input type="radio" name="content-type" value="text" /> Text
+          </label>
+          <label>
+            <input type="radio" name="content-type" value="image" /> Image
+          </label>
+          <label>
+            <input type="radio" name="content-type" value="video" /> Video
+          </label>
+          <label>
+            <input type="radio" name="content-type" value="document" checked /> Document
+          </label>
+        </div>
+    
+        <!-- Upload Section -->
+        <div class="section upload">
+          <label style="font-weight: bold;">Upload Media File</label>
+          <p class="support-text">Supported file type: .pdf, .docx, .xlsx</p>
+          <p class="support-text">Maximum file size: 5 MB</p>
+          <input type="file" class="upload-file" accept=".pdf, .docx, .xlsx" />
+          <p id="file-name" style="margin-top: 8px;"></p>
+          <p>or</p>
+          <input type="text" class="media-url" placeholder="Media URL" />
+          <button class="add-variable">Add Variable</button>
+        </div>
+      <div class="cont2">
+        <div class="section message-body">
+          <p>Message Body</p>
+          <textarea id="area" placeholder="Enter your message here"></textarea>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="foot">
+      <div class="preview">
+        <h3>Preview</h3>
+        <img src="" alt="Preview" style="max-width: 100%; height: auto;" />
+       <p>Hi {{name}}, please find details in attached image...</p>
+      </div>
+    </div>
+    <div class="footer">
+      <button class="cancel-btn" onclick="window.location.href='home.html';">Cancel</button>
+      <button class="save-btn">Save</button>
+    </div>
+  </div>
+
+
+
+  <script>
+  // Redirect on type selection (image, doc, etc.)
+  document.querySelectorAll('input[name="content-type"]').forEach((radio) => {
+    radio.addEventListener('change', function () {
+      if (this.value === 'image') {
+        window.location.href = 'img.html';
+      } else if (this.value === 'document') {
+        window.location.href = 'doc.html';
+      } else if (this.value === 'video') {
+        window.location.href = 'video.html';
+      } else if (this.value === 'text') {
+        window.location.href = 'text.html';
+      }
+    });
+  });
+
+ 
+  document.querySelectorAll('input[name="template"]').forEach((radio) => {
+    radio.addEventListener('change', function () {
+      if (this.value === 'pre-approved') {
+        window.location.href = 'pre.html';
+      }
+    });
+  });
+
+
+
+    const fileInput = document.querySelector('.upload-file');
+    const fileNameDisplay = document.getElementById('file-name');
+
+    fileInput.addEventListener('change', function () {
+      const file = this.files[0];
+      const allowedTypes = ['application/pdf', 
+                            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+
+      if (file) {
+        if (!allowedTypes.includes(file.type)) {
+          alert('Invalid file type. Please upload .pdf, .docx, or .xlsx only.');
+          this.value = '';
+          fileNameDisplay.textContent = '';
+        } else if (file.size > 5 * 1024 * 1024) {
+          alert('File size exceeds 5 MB limit.');
+          this.value = '';
+          fileNameDisplay.textContent = '';
+        } else {
+          fileNameDisplay.textContent = 'Selected file: ' + file.name;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

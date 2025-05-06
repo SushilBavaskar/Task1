@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <title>Opt-In Management</title>
+    <script>
+        function handleConfigureClick(type) {
+            // Redirect based on the type
+            if (type === 'text') {
+                window.location.href = 'text.html';
+            } else if (type === 'image') {
+                window.location.href = 'img.html';
+            } else if (type === 'pre') {
+                window.location.href = 'pre.html';
+            } else if (type === 'doc') {
+                window.location.href = 'doc.html';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header class="head">
+            <div class="buttons">
+                <h1>Opt-In Management</h1>
+            </div>
+            <div class="buttons">
+                <button class="cancel">Cancel</button>
+                <button class="save">Save</button>
+            </div>
+        </header><br>
+
+        <section class="opt-in-section">
+            <div class="box1">
+                <h2>Opt-in</h2>
+            <p>A text that explains what opt-in is</p><br>
+                <div class="box2">
+                    
+                <div class="response">
+                    <label>Opt-in Response</label>
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                      </label>
+                </div>
+                <button class="configure" onclick="handleConfigureClick('text')">Configure</button>
+                </div>
+            </div>
+            <div class="box1">
+                <h2>Opt-in Keyword</h2><br>
+                <p>Setup a response message for opt-in user keywords</p>
+            <div class="keyword-container">
+                <input type="text" id="userInput" name="userInput" placeholder="+ Add keyword" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" />
+                <button class="add-keyword"></button>
+                <span class="keyword">Keyword</span>
+                <span class="keyword">Keyword</span>
+                <span class="keyword">Keyword</span>
+            </div>
+            </div>
+        </section>
+
+        <section class="opt-in-section">
+            <div class="box1">
+                <h2>Opt-in</h2>
+            <p>A text that explains what opt-in is</p><br>
+                <div class="box2">
+                    
+                <div class="response">
+                    <label>Opt-in Response</label>
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                      </label>
+                </div>
+                <button class="configure" onclick="handleConfigureClick('text')">Configure</button>
+                </div>
+            </div>
+            <div class="box1">
+                <h2>Opt-in Keyword</h2><br>
+                <p>Setup a response message for opt-in user keywords</p>
+            <div class="keyword-container">
+                <input type="text" id="userInput" name="userInput" placeholder="+ Add keyword" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;" />
+                <button class="add-keyword"></button>
+                <span class="keyword">Keyword</span>
+                <span class="keyword">Keyword</span>
+                <span class="keyword">Keyword</span>
+            </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
